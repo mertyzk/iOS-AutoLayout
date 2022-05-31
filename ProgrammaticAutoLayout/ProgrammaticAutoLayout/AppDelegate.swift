@@ -11,8 +11,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let transitionController = TransitionControl(collectionViewLayout: layout)
+        
+        window?.rootViewController = transitionController
+        
+        // copy paste sceneDelegate.swift last 3 row
+        
         // Override point for customization after application launch.
         return true
     }

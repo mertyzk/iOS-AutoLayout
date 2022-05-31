@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let googleImage : UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "icons8-google-240"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "go3"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -35,7 +35,27 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Back", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.setTitleColor(UIColor.darkGray, for: .normal)
         return button
+    }()
+    
+    private let buttonNext : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Next", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.setTitleColor(UIColor.darkGray, for: .normal)
+        return button
+    }()
+    
+    private let pageControl : UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 5
+        pageControl.currentPageIndicatorTintColor = UIColor.newRed
+        pageControl.pageIndicatorTintColor = UIColor.lowRed
+        return pageControl
     }()
     
 
@@ -82,17 +102,31 @@ class ViewController: UIViewController {
     
     fileprivate func buttonControl(){
         
-        view.addSubview(buttonBack)
-        buttonBack.backgroundColor = .blue
+        //view.addSubview(buttonBack)
+        
+        let buttonStackView = UIStackView(arrangedSubviews: [buttonBack, pageControl, buttonNext])
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        //buttonStackView.axis = .vertical // butonları alt alta getirir.
+        buttonStackView.distribution = .fillEqually
+        
+        view.addSubview(buttonStackView)
+        
         NSLayoutConstraint.activate([
-            buttonBack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            buttonBack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            buttonBack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            buttonBack.heightAnchor.constraint(equalToConstant: 50)
+            buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 50)
         ])
         
     }
 
 
+}
+
+extension UIColor {
+    
+    static var newRed = UIColor(red: 229/255, green: 70/255, blue: 129/255, alpha: 1)
+    static var lowRed = UIColor(red: 250/255, green: 210/255, blue: 215/255, alpha: 1)
+    
 }
 

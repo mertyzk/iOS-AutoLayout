@@ -48,7 +48,7 @@ class TransitionControl : UICollectionViewController{
     @objc func buttonNextClicked(){
         
         pageControl.currentPage += 1
-        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)	
         collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         print("Count of pages : \(pageControl.numberOfPages)")
         
